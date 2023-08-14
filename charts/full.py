@@ -143,23 +143,26 @@ def full():
         ingestor_populate_agg_delivered_trip_metrics >> dynamo_write >> dynamo_delivered_trip_metrics_monthly
         ingestor_update_time_predictions >> dynamo_write >> dynamo_time_predictions
 
-        datadog - Edge(color="plum") - [
-            slow_zone_lambda,
-            data_dashboard_api,
-            ingestor_store_new_train_runs,
-            ingestor_store_yesterdays_alerts,
-            ingestor_bb_store_station_status,
-            ingestor_bb_store_station_info,
-            ingestor_bb_calc_daily_stats,
-            ingestor_update_ridership,
-            ingestor_update_gtfs,
-            ingestor_update_agg_trip_metrics,
-            ingestor_update_speed_restrictions,
-            ingestor_update_time_predictions,
-            ingestor_store_landing_data,
-            ingestor_populate_delivered_trip_metrics,
-            ingestor_populate_agg_delivered_trip_metrics,
-            ingestor_update_delivered_trip_metrics,
-            ingestor_update_delivered_trip_metrics_yesterday
-        ]
-
+        (
+            datadog
+            - Edge(color="plum")
+            - [
+                slow_zone_lambda,
+                data_dashboard_api,
+                ingestor_store_new_train_runs,
+                ingestor_store_yesterdays_alerts,
+                ingestor_bb_store_station_status,
+                ingestor_bb_store_station_info,
+                ingestor_bb_calc_daily_stats,
+                ingestor_update_ridership,
+                ingestor_update_gtfs,
+                ingestor_update_agg_trip_metrics,
+                ingestor_update_speed_restrictions,
+                ingestor_update_time_predictions,
+                ingestor_store_landing_data,
+                ingestor_populate_delivered_trip_metrics,
+                ingestor_populate_agg_delivered_trip_metrics,
+                ingestor_update_delivered_trip_metrics,
+                ingestor_update_delivered_trip_metrics_yesterday,
+            ]
+        )
