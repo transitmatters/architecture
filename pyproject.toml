@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "architecture"
+version = "1.0.0"
+description = "Architecture by TransitMattters"
+authors = ["TransitMatters Labs Team"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.11, <3.12"
+diagrams = "^0.23.3"
+
+[tool.poetry.dev-dependencies]
+black = "^23.7.0"
+flake8 = "^6.1.0"
+
+[tool.black]
+line-length = 150
+target-version = ['py311']
+
+[build-system]
+requires = ["poetry-core>=1.5.0"]
+build-backend = "poetry.core.masonry.api"
