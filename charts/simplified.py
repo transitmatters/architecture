@@ -12,17 +12,18 @@ from diagrams.aws.compute import EC2
 
 from logos import mbta_icon, massdot_icon, box_icon
 
+
 def simplified():
     graph_attr = {"beautify": "true", "concentrate": "true", "layout": "dot", "ranksep": "1"}
     with Diagram("Transitmatters - Architecture Overview", filename="diagrams/simplified_architecture", graph_attr=graph_attr, show=False):
         with Cluster("MBTA"):
-                mbta_performance_api = Custom("MBTA Performance API", mbta_icon)
-                mbta_v3_api = Custom("MBTA v3 API", mbta_icon)
-                mbta_gtfs = Custom("MBTA GTFS", mbta_icon)
-                mbta_gtfs_rt = Custom("MBTA GTFS-RT", mbta_icon)
-                mass_dot_blue_book = Custom("MassDOT Blue Book", massdot_icon)
-                mass_dot_box = Custom("MassDOT Box", box_icon)
-        
+            mbta_performance_api = Custom("MBTA Performance API", mbta_icon)
+            mbta_v3_api = Custom("MBTA v3 API", mbta_icon)
+            mbta_gtfs = Custom("MBTA GTFS", mbta_icon)
+            mbta_gtfs_rt = Custom("MBTA GTFS-RT", mbta_icon)
+            mass_dot_blue_book = Custom("MassDOT Blue Book", massdot_icon)
+            mass_dot_box = Custom("MassDOT Box", box_icon)
+
         with Cluster("TransitMatters"):
             with Cluster("t-performance-dash"):
                 data_dashboard_api = LambdaFunction("Data Dashboard API")
@@ -54,7 +55,6 @@ def simplified():
 
         with Cluster("GitHub"):
             github_pages = Github("GitHub Pages")
-
 
         mbta_performance_api >> Edge(minlen="3") >> data_dashboard_api
         mbta_performance_api >> Edge(minlen="3") >> data_ingestors
