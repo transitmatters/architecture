@@ -64,7 +64,9 @@ def simplified():
         mbta_performance_api >> standard_edge >> slow_zone_lambda
         mbta_v3_api >> standard_edge >> new_train_tracker
         mbta_gtfs >> standard_edge >> data_ingestors
+        mbta_gtfs >> standard_edge >> covid_recovery_dash
         mass_dot_box >> standard_edge >> data_ingestors
+        mass_dot_box >> standard_edge >> covid_recovery_dash
         mass_dot_blue_book >> standard_edge >> data_ingestors
         data_ingestors >> standard_edge >> dynamo
         data_ingestors >> standard_edge >> s3

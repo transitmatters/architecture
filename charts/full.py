@@ -104,7 +104,9 @@ def full():
         mbta_performance_api >> standard_edge >> slow_zone_lambda
         mbta_v3_api >> standard_edge >> new_train_tracker
         mbta_gtfs >> standard_edge >> ingestor_update_gtfs
+        mbta_gtfs >> standard_edge >> covid_recovery_dash
         mass_dot_box >> standard_edge >> ingestor_update_ridership
+        mass_dot_box >> standard_edge >> covid_recovery_dash
         mass_dot_blue_book >> standard_edge >> ingestor_update_speed_restrictions
 
         # EC2 Instances
