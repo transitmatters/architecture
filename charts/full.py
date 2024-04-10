@@ -6,10 +6,13 @@ from diagrams.saas.logging import DataDog
 from diagrams.onprem.ci import GithubActions
 from diagrams.programming.framework import React
 from diagrams.custom import Custom
+from diagrams.onprem.vcs import Github
 from diagrams.aws.compute import EC2Instance
 
 from logos import mbta_icon, massdot_icon, box_icon
 
+# global graph attributes
+graph_attr = {"beautify": "true", "concentrate": "true", "layout": "dot", "ranksep": "3"}
 standard_edge = Edge(minlen="2")
 s3_read = Edge(color="darkgreen", fontcolor="darkgreen", xlabel="s3 read", minlen="3")
 s3_write = Edge(color="darkorange", fontcolor="darkorange", xlabel="s3 write", minlen="4")
@@ -18,8 +21,8 @@ dynamo_write = Edge(color="slateblue", fontcolor="slateblue", xlabel="dynamo wri
 
 
 def full():
-    graph_attr = {"beautify": "true", "concentrate": "true", "layout": "dot", "ranksep": "3"}
-    with Diagram("Transitmatters - Full Architecture", filename="diagrams/full_architecture", graph_attr=graph_attr, show=False):
+    with Diagram("TransitMatters - Full Architecture", filename="diagrams/transitmatters_full_architecture", graph_attr=graph_attr, show=False):
+
         with Cluster("MBTA"):
             mbta_performance_api = Custom("MBTA Performance API", mbta_icon)
             mbta_v3_api = Custom("MBTA v3 API", mbta_icon)
@@ -90,15 +93,20 @@ def full():
                 ec2_ntt = EC2Instance("ntt-traintracker.transitmatters.org")
                 ec2_rre = EC2Instance("rre-regionalrail.rocks")
 
+        with Cluster("GitHub"):
+            github_pages = Github("GitHub Pages")
+
         datadog = DataDog("Datadog")
 
-        # Edges
+        # API Edges
         mbta_performance_api >> standard_edge >> data_dashboard_api
         mbta_performance_api >> standard_edge >> ingestor_store_new_train_runs
         mbta_performance_api >> standard_edge >> slow_zone_lambda
         mbta_v3_api >> standard_edge >> new_train_tracker
         mbta_gtfs >> standard_edge >> ingestor_update_gtfs
+        mbta_gtfs >> standard_edge >> covid_recovery_dash
         mass_dot_box >> standard_edge >> ingestor_update_ridership
+        mass_dot_box >> standard_edge >> covid_recovery_dash
         mass_dot_blue_book >> standard_edge >> ingestor_update_speed_restrictions
 
         # EC2 Instances
@@ -142,6 +150,9 @@ def full():
         ingestor_populate_agg_delivered_trip_metrics >> dynamo_write >> dynamo_delivered_trip_metrics_weekly
         ingestor_populate_agg_delivered_trip_metrics >> dynamo_write >> dynamo_delivered_trip_metrics_monthly
         ingestor_update_time_predictions >> dynamo_write >> dynamo_time_predictions
+
+        # Other
+        covid_recovery_dash >> standard_edge >> github_pages
 
         (
             datadog

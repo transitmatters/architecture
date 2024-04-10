@@ -4,7 +4,7 @@
 
 To modify the charts, first run: `poetry install`
 
-To update the charts: `python diagram.py`
+To update the charts: `poetry run python diagram.py`
 
 ### Code Structure
 
