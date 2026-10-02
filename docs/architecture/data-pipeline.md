@@ -25,8 +25,10 @@ flowchart LR
 
     api["Dashboard API"]
 
-    v3 -- "bus & CR" --> gobble --> events
-    lamp -- "subway & bus" --> perf --> events
+    monthly(["Monthly files<br/>(ArcGIS Hub)"])
+    v3 -- "bus, CR, ferry" --> gobble --> events
+    lamp -- "subway, bus" --> perf --> events
+    monthly -. "by hand" .-> events
     gtfs --> ingest --> tmgtfs --> perf
     open --> ingest --> ddb
     events & ddb --> api
@@ -51,6 +53,20 @@ flowchart LR
     ingest --> landing --> site
     api --> sz --> slow --> site & bot
 ```
+
+## Which events the dashboard reads
+
+This depends on the mode and on a **cutoff date** that a maintainer moves forward by hand each time a new monthly archive is loaded.
+
+| Mode | Up to the cutoff | After the cutoff |
+|---|---|---|
+| Subway | Monthly archive (`Events/monthly-data/`) | LAMP (`Events-lamp/daily-data/`) |
+| Bus | Monthly archive (`Events/monthly-bus-data/`) | gobble (`Events-live/daily-bus-data/`) |
+| Commuter Rail | gobble (`Events-live/daily-cr-data/`) | gobble |
+| Ferry | Monthly archive (`Events/monthly-ferry-data/`) | Nothing yet |
+
+- **Cutoffs:** `MAX_MONTH_DATA_DATE` in [`server/chalicelib/date_utils.py`](https://github.com/transitmatters/t-performance-dash/blob/main/server/chalicelib/date_utils.py) for the API. The frontend has its own `BUS_MAX_DATE`, `FERRY_MAX_DATE` and `RIDE_MAX_DATE` in [`common/constants/dates.ts`](https://github.com/transitmatters/t-performance-dash/blob/main/common/constants/dates.ts).
+- **Written but not read (yet):** mbta-performance writes bus LAMP events to `Events-lamp/bus-daily-data/`, and gobble records ferry. The dashboard doesn't use either today.
 
 ## What we store
 
@@ -77,10 +93,22 @@ Names in `code` without a bucket are DynamoDB tables.
 
 ## Things that trip people up
 
-- **Two event sources.** Subway events come from LAMP (`Events-lamp/`). Bus and Commuter Rail come from gobble (`Events-live/`).
-- **Historical data is loaded by hand.** Monthly archives in `Events/` are uploaded with a [runbook](https://github.com/transitmatters/mbta-performance/blob/main/mbta-performance/chalicelib/historic/README.md), not on a schedule.
+- **Three event sources.** Monthly archives, LAMP and gobble all land in `tm-mbta-performance`. See [the table above](#which-events-the-dashboard-reads) for which one a chart uses.
+- **Historical data is loaded by hand.** Monthly archives in `Events/` are uploaded with a [runbook](https://github.com/transitmatters/mbta-performance/blob/main/mbta-performance/chalicelib/historic/README.md), not on a schedule. After loading, bump the cutoff dates.
 - **Static JSON lives in the site bucket.** Slow zones and landing page stats are written straight into the dashboard's frontend bucket, then CloudFront's cache is cleared.
-- **Times are UTC.** Lambda schedules are in UTC, and most skip roughly 3–6 AM Boston time, when the T isn't running.
+- **Times are UTC.** Lambda schedules are in UTC, and most skip roughly 3–6 AM Boston time, when the T isn't running. Trust the `Cron(...)` arguments over the comments next to them; several comments are wrong.
+- **A "day" is a service day.** Late-night trips belong to the previous day. The cutover is 3:00 AM Eastern in data-ingestion, gobble and mbta-performance, but 3:30 AM in the dashboard API.
+
+## Updated by hand
+
+These don't change on their own. If something looks frozen, check here first.
+
+- Dashboard cutoff dates (above)
+- Monthly event archives ([runbook](https://github.com/transitmatters/mbta-performance/blob/main/mbta-performance/chalicelib/historic/README.md))
+- Station lists (see [IDs & stations](ids.md#station-lists))
+- Shutdowns in Shutdown Tracker's `src/constants/shutdowns.json`
+- New Train Tracker's fleet number ranges (`server/chalicelib/fleet.py`)
+- Dashboard "peak" baselines (`common/constants/baselines.ts`)
 
 ## Key code
 

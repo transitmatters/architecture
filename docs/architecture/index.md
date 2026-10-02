@@ -70,5 +70,6 @@ flowchart LR
 
 - [Data sources](data-sources.md): where the raw data comes from
 - [Data pipeline](data-pipeline.md): every bucket and table, and who writes and reads them
+- [IDs & stations](ids.md): line, stop and direction conventions, and where station lists live
 - [Hosting & deploys](hosting.md): how code gets from GitHub to production
 - [Tech stack](stack.md): languages, frameworks and monitoring
