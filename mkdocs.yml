@@ -4,24 +4,27 @@ site_url: https://transitmatters.github.io/architecture/
 repo_url: https://github.com/transitmatters/architecture
 repo_name: transitmatters/architecture
 edit_uri: edit/main/docs/
+copyright: © TransitMatters
 
 theme:
   name: material
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
-      primary: red
-      accent: indigo
+      primary: custom
+      accent: custom
       toggle:
         icon: material/brightness-7
         name: Switch to dark mode
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
-      primary: deep purple
-      accent: amber
+      primary: custom
+      accent: custom
       toggle:
         icon: material/brightness-4
         name: Switch to light mode
+  logo: assets/flask.png
+  favicon: assets/favicon.png
   icon:
     repo: fontawesome/brands/github
   features:
@@ -57,6 +60,9 @@ markdown_extensions:
       alternate_style: true
   - toc:
       permalink: true
+
+extra_css:
+  - stylesheets/extra.css
 
 plugins:
   - search
@@ -94,3 +100,11 @@ validation:
   links:
     anchors: warn
     unrecognized_links: warn
+
+extra:
+  generator: false
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/transitmatters
+    - icon: fontawesome/solid/globe
+      link: https://transitmatters.org/transitmatters-labs

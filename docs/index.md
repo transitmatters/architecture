@@ -4,7 +4,10 @@ hide:
   - toc
 ---
 
-# TransitMatters Labs
+# TransitMatters Labs { .tm-sr-only }
+
+![TransitMatters Labs](assets/labs-logo.png#only-light){ .tm-hero }
+![TransitMatters Labs](assets/labs-logo-dark.png#only-dark){ .tm-hero }
 
 Labs is the volunteer tech team at [TransitMatters](https://transitmatters.org). We build open-source tools, like the [Data Dashboard](https://dashboard.transitmatters.org), that turn MBTA data into evidence for better transit in Greater Boston.
 
