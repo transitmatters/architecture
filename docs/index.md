@@ -15,7 +15,7 @@ Labs is the volunteer tech team at [TransitMatters](https://transitmatters.org).
 
 <div class="grid cards" markdown>
 
--   :material-rocket-launch: **[Getting started](getting-started.md)**
+-   :material-rocket-launch: **[Getting started](getting-started/index.md)**
 
     ---
 
@@ -33,11 +33,23 @@ Labs is the volunteer tech team at [TransitMatters](https://transitmatters.org).
 
     Every app, pipeline and library, with links to its repo and docs.
 
+-   :material-frequently-asked-questions: **[FAQ](faq.md)**
+
+    ---
+
+    Empty charts, weird IDs, port clashes and other things that trip people up.
+
 -   :material-book-alphabet: **[Glossary](glossary.md)**
 
     ---
 
     Headways, dwells, GTFS, Chalice and other jargon.
+
+-   :material-flask: **[Good First Tasks](https://github.com/orgs/transitmatters/projects/11)**
+
+    ---
+
+    Starter issues picked for new volunteers.
 
 </div>
 

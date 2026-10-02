@@ -1,6 +1,6 @@
 # gobble
 
-Listens to the MBTA V3 streaming API around the clock and records every bus and Commuter Rail arrival and departure as event CSVs.
+Listens to the MBTA V3 streaming API around the clock and records bus, Commuter Rail and ferry arrivals and departures as event CSVs.
 
 [Repo](https://github.com/transitmatters/gobble){ .md-button }
 
@@ -19,7 +19,8 @@ flowchart LR
 
 ## Good to know
 
-- **Production only runs bus and Commuter Rail.** Subway events come from LAMP via [mbta-performance](mbta-performance.md).
+- **Production records bus, Commuter Rail and ferry**, set in `.github/workflows/deploy.yml`. Subway comes from LAMP via [mbta-performance](mbta-performance.md). Your local `config/local.json` enables everything by default.
+- **Merge between 9 PM and 6 AM.** Deploying restarts the live listener, so maintainers avoid doing it during service.
 - This is one of the few things on EC2, because it needs a constant connection.
 
 ## gobble-wrta
