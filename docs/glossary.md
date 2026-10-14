@@ -17,6 +17,9 @@
 **Speed restriction**
 :   An official MBTA order to run slower on a stretch of track. Often the cause of a slow zone.
 
+**Service day**
+:   The MBTA's operating day, which runs from about 3 AM to 3 AM Eastern. A 1 AM trip belongs to the previous day.
+
 **Delivered trips / service**
 :   How many trips actually ran, compared with how many were scheduled.
 
@@ -42,6 +45,9 @@
 
 **Events**
 :   Our name for arrival/departure records, stored as CSVs in S3.
+
+**Parent station / child stop**
+:   A station (`place-pktrm`) contains one child stop per platform (`70075`). Event files use child stops. See [IDs & stations](architecture/ids.md).
 
 **Blue Book**
 :   MassDOT's open data portal.

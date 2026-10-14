@@ -28,7 +28,8 @@ The API only **reads**. Everything it serves is written by the [data pipeline](.
 
 ## Good to know
 
-- **No AWS access needed.** Set `TM_BACKEND_SOURCE=prod` to point your local frontend at the production API. See the [README](https://github.com/transitmatters/t-performance-dash#backend-data-source).
-- **Other apps depend on this API:** Shutdown Tracker, slow-zones, data-ingestion, tm-data-mcp and transitmattr. Treat changes to existing endpoints with care.
+- **No AWS access needed.** Set `TM_BACKEND_SOURCE=prod` to point your local frontend at the production API. Set it explicitly: see [backend modes](../getting-started/local-dev.md#data-dashboard-backend-modes).
+- **Other apps depend on this API:** Shutdown Tracker, slow-zones, data-ingestion, tm-data-mcp and transitmattr. The Slow Zone Bot and slow-zones also build links to dashboard pages. Don't rename endpoints, fields or URL paths without checking them.
+- **Work is tracked** on the [Data Dashboard project board](https://github.com/orgs/transitmatters/projects/5).
 - The OpenAPI spec is generated into `server/openapi.json`.
 - Uses [stripmap](libraries.md#stripmap) for the slow zone map.

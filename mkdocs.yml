@@ -69,11 +69,14 @@ plugins:
 
 nav:
   - Home: index.md
-  - Getting started: getting-started.md
+  - Getting started:
+      - getting-started/index.md
+      - Local dev reference: getting-started/local-dev.md
   - Architecture:
       - architecture/index.md
       - Data sources: architecture/data-sources.md
       - Data pipeline: architecture/data-pipeline.md
+      - IDs & stations: architecture/ids.md
       - Hosting & deploys: architecture/hosting.md
       - Tech stack: architecture/stack.md
   - Projects:
@@ -94,6 +97,7 @@ nav:
           - gobble: projects/gobble.md
           - slow-zones: projects/slow-zones.md
       - Libraries & tools: projects/libraries.md
+  - FAQ: faq.md
   - Glossary: glossary.md
 
 validation:

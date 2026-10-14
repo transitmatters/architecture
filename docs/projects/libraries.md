@@ -6,7 +6,7 @@ Shared code and ways to use our data outside the dashboard.
 
 [`@transitmatters/stripmap`](https://www.npmjs.com/package/@transitmatters/stripmap) is a React and SVG component for drawing a transit line as a schematic strip map. The Data Dashboard uses it for the slow zone map.
 
-- **Publish:** bump the version in `package.json` and merge. CI publishes to npm.
+- **Publish:** bump the version in `package.json` and merge. CI publishes to npm. A dashboard PR that needs a stripmap change has to wait for that release.
 - **Develop:** `npm run storybook`
 - [Repo](https://github.com/transitmatters/stripmap)
 
@@ -15,6 +15,7 @@ Shared code and ways to use our data outside the dashboard.
 A Python package on [PyPI](https://pypi.org/project/mbta-gtfs-sqlite/) that downloads the MBTA's GTFS history, converts each feed to SQLite, and lets you query it with SQLAlchemy. data-ingestion uses it to build the `tm-gtfs` bucket.
 
 - **Publish:** bump the version in `pyproject.toml` and merge.
+- **Heads up:** mbta-performance pins `~=1.2.0`, so a 1.3 release won't reach it until that pin changes.
 - [Repo](https://github.com/transitmatters/mbta-gtfs-sqlite)
 
 ## transitmattr

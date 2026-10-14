@@ -2,6 +2,9 @@
 
 Every project lives in its own repo under [github.com/transitmatters](https://github.com/transitmatters). The repo README is always the source of truth for setup.
 
+!!! tip "Looking for something to do?"
+    The [Good First Tasks board](https://github.com/orgs/transitmatters/projects/11) collects starter issues across every repo. Each repo also has a `/contribute` page, for example [t-performance-dash/contribute](https://github.com/transitmatters/t-performance-dash/contribute).
+
 ## Apps
 
 | Project | What it does | Links |

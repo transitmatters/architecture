@@ -46,4 +46,4 @@ flowchart LR
 Several apps also redeploy automatically once a month. Some have a beta stack (`*-beta.labs.transitmatters.org`) that you can deploy by hand.
 
 !!! tip "You don't need AWS access to contribute"
-    Deploys run in CI with shared secrets. To run things locally, see [Getting started](../getting-started.md).
+    Deploys run in CI with shared secrets. To run things locally, see the [local dev reference](../getting-started/local-dev.md).
