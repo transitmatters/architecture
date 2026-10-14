@@ -17,7 +17,7 @@ Repos don't all use the same versions or ports. Check here before you start figh
 | mbta-gtfs-sqlite | – | 3.11+ | Poetry |
 | futures-explorer | 26 | 3.11 | Docker, [go-task](https://taskfile.dev/), ~10 GB disk |
 
-You'll need both Python 3.12 and 3.13. uv fetches the right one automatically.
+You'll need both Python 3.12 and 3.13. `mise install` (or uv) fetches the right one from each repo's `.python-version`.
 
 ## Ports
 

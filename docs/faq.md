@@ -62,7 +62,7 @@ Questions new volunteers ask a lot. Click one to expand it.
 
 ??? question "`npm install` fails on the dashboard"
 
-    It requires Node 24.12 or newer, and refuses to install on older versions. Run `nvm install && nvm use` in the repo.
+    It requires Node 24.12 or newer, and refuses to install on older versions. Run `mise install` in the repo.
 
 ## Changes and deploys
 
