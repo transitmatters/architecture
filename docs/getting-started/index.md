@@ -51,8 +51,8 @@ Not sure which project? A rough guide:
 You'll need:
 
 - **Git** and a GitHub account
-- **Node**: use the version in the repo's `.nvmrc` (`nvm install && nvm use`). Some repos also pin it with [Volta](https://volta.sh/).
-- **Python + [uv](https://docs.astral.sh/uv/)**. A few older repos use Poetry; the README will say.
+- **[mise](https://mise.jdx.dev)** for Node and Python versions: run `mise trust && mise install` in a repo. Versions are pinned in each repo's `.nvmrc` / `.python-version`, so other version managers work too.
+- **[uv](https://docs.astral.sh/uv/)** for Python dependencies. A few older repos use Poetry; the README will say.
 - **A free [MBTA V3 API key](https://api-v3.mbta.com/)** for apps that call the MBTA directly
 
 !!! tip "You don't need AWS access to start"

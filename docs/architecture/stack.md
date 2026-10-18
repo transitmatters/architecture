@@ -9,7 +9,7 @@ We keep projects similar so you can move between them without relearning everyth
 - **[Vite](https://vite.dev/)** for smaller apps: New Train Tracker, Shutdown Tracker, Pride Bus, Station Explorer
 - **Common libraries:** Tailwind, TanStack Query, Leaflet for maps, [`@transitmatters/stripmap`](../projects/libraries.md#stripmap) for line diagrams
 - **Style:** ESLint + Prettier. Run `npm run lint`.
-- **Node version:** in each repo's `.nvmrc`
+- **Node version:** in each repo's `.nvmrc`; Python version in `.python-version`. We recommend [mise](https://mise.jdx.dev) to install both (`mise install`)
 
 ## Backend
 
